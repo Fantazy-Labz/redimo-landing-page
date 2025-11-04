@@ -33,11 +33,12 @@
       </button>
     </div>
 
-    <nav id="mobileMenu" class="menu-mobile" hidden>
-      <a href="#servicios">Servicios</a>
-      <a href="#proceso">Proceso</a>
-      <a href="#clientes">Clientes</a>
-      <a href="#contacto" class="btn btn--primary">Cotiza</a>
+    <!-- Menú móvil -->
+    <nav id="mobileMenu" class="menu-mobile" aria-label="Navegación móvil" hidden>
+      <a href="#servicios" data-menu-close>Servicios</a>
+      <a href="#proceso" data-menu-close>Proceso</a>
+      <a href="#clientes" data-menu-close>Clientes</a>
+      <a href="#contacto" class="btn btn--primary" data-menu-close>Cotiza</a>
     </nav>
   </header>
 
@@ -57,7 +58,17 @@
           <li>Calidad garantizada</li>
         </ul>
       </div>
+
       <div class="hero__media" aria-hidden="true">
+        <picture>
+          <img
+            src="assets/hero.png"
+            srcset="assets/hero@2x.jpg 2x, assets/hero.png 1x"
+            alt=""
+            width="960" height="720"
+            loading="eager" decoding="async" class="hero__img"
+          />
+        </picture>
         <div class="spark"></div>
       </div>
     </div>
@@ -73,6 +84,9 @@
 
       <div class="grid cards">
         <article class="card">
+          <div class="card__media">
+            <img src="assets/moldes.png" alt="" loading="lazy" decoding="async" width="640" height="400" />
+          </div>
           <h3>Reparación de moldes</h3>
           <p>Diagnóstico, rectificado, pulido, ajuste de cavidades, guías y expulsión. Reducción de tiempos muertos.</p>
           <ul>
@@ -83,6 +97,9 @@
         </article>
 
         <article class="card">
+          <div class="card__media">
+            <img src="assets/cad.png" alt="" loading="lazy" decoding="async" width="640" height="400" />
+          </div>
           <h3>Diseño &amp; fabricación</h3>
           <p>Diseño CAD/CAM, análisis de manufacturabilidad y fabricación de insertos, placas, punzones y troqueles.</p>
           <ul>
@@ -93,6 +110,9 @@
         </article>
 
         <article class="card">
+          <div class="card__media">
+            <img src="assets/soldadura.png" alt="" loading="lazy" decoding="async" width="640" height="400" />
+          </div>
           <h3>Soldadura láser / TIG</h3>
           <p>Aporte controlado con mínima deformación. Ideal para cavidades, bordes finos y materiales templados.</p>
           <ul>
@@ -103,6 +123,9 @@
         </article>
 
         <article class="card">
+          <div class="card__media">
+            <img src="assets/grabado.png" alt="" loading="lazy" decoding="async" width="640" height="400" />
+          </div>
           <h3>Grabado láser</h3>
           <p>Textos, series, logos y marcajes permanentes en metales. Alto contraste y repetibilidad.</p>
           <ul>
@@ -113,6 +136,9 @@
         </article>
 
         <article class="card">
+          <div class="card__media">
+            <img src="assets/fixures.png" alt="" loading="lazy" decoding="async" width="640" height="400" />
+          </div>
           <h3>Fixtures &amp; ingeniería</h3>
           <p>Diseño de fixtures, cambios de ingeniería, mejoras de ciclo y mantenibilidad.</p>
           <ul>
@@ -123,6 +149,9 @@
         </article>
 
         <article class="card">
+          <div class="card__media">
+            <img src="assets/tratamientos.png" alt="" loading="lazy" decoding="async" width="640" height="400" />
+          </div>
           <h3>Tratamientos térmicos</h3>
           <p>Selección y especificación para dureza, desgaste y estabilidad dimensional.</p>
           <ul>
@@ -143,28 +172,45 @@
         <p>Transparencia y control de calidad en cada etapa.</p>
       </header>
 
-      <ol class="timeline">
-        <li>
-          <h3>1 · Levantamiento</h3>
-          <p>Recepción de pieza y requerimientos, fotografías y mediciones iniciales.</p>
-        </li>
-        <li>
-          <h3>2 · Diagnóstico</h3>
-          <p>Análisis de causa raíz, definición de tolerancias y plan de trabajo.</p>
-        </li>
-        <li>
-          <h3>3 · Ejecución</h3>
-          <p>Soldadura, maquinado, ajuste y tratamientos según especificación.</p>
-        </li>
-        <li>
-          <h3>4 · Validación</h3>
-          <p>Inspección dimensional, pruebas funcionales y documentación.</p>
-        </li>
-        <li>
-          <h3>5 · Entrega</h3>
-          <p>Reporte final y recomendaciones de mantenimiento preventivo.</p>
-        </li>
-      </ol>
+      <div class="timeline__wrap">
+        <ol class="timeline">
+          <li>
+            <div class="step__media">
+              <img src="assets/piezas.png" alt="" loading="lazy" decoding="async" width="480" height="320" />
+            </div>
+            <h3>1 · Levantamiento</h3>
+            <p>Recepción de pieza y requerimientos, fotografías y mediciones iniciales.</p>
+          </li>
+          <li>
+            <div class="step__media">
+              <img src="assets/causa.png" alt="" loading="lazy" decoding="async" width="480" height="320" />
+            </div>
+            <h3>2 · Diagnóstico</h3>
+            <p>Análisis de causa raíz, definición de tolerancias y plan de trabajo.</p>
+          </li>
+          <li>
+            <div class="step__media">
+              <img src="assets/maquinado.png" alt="" loading="lazy" decoding="async" width="480" height="320" />
+            </div>
+            <h3>3 · Ejecución</h3>
+            <p>Soldadura, maquinado, ajuste y tratamientos según especificación.</p>
+          </li>
+          <li>
+            <div class="step__media">
+              <img src="assets/test.png" alt="" loading="lazy" decoding="async" width="480" height="320" />
+            </div>
+            <h3>4 · Validación</h3>
+            <p>Inspección dimensional, pruebas funcionales y documentación.</p>
+          </li>
+          <li>
+            <div class="step__media">
+              <img src="assets/mantenimiento.png" alt="" loading="lazy" decoding="async" width="480" height="320" />
+            </div>
+            <h3>5 · Entrega</h3>
+            <p>Reporte final y recomendaciones de mantenimiento preventivo.</p>
+          </li>
+        </ol>
+      </div>
     </div>
   </section>
 
@@ -181,6 +227,12 @@
         <span class="logos__item">Automotriz</span>
         <span class="logos__item">Electrónicos</span>
         <span class="logos__item">Troqueles</span>
+      </div>
+
+      <div class="clients__gallery">
+        <img src="assets/inyeccion_plastico.png" alt="Detalle de cavidad pulida" loading="lazy" decoding="async" width="360" height="240" />
+        <img src="assets/automotriz.png" alt="Troquel en ajuste" loading="lazy" decoding="async" width="360" height="240" />
+        <img src="assets/soldadura_laser.png" alt="Soldadura láser de precisión" loading="lazy" decoding="async" width="360" height="240" />
       </div>
 
       <blockquote class="quote">
@@ -242,7 +294,7 @@
         <div>
           <strong>REDIMO</strong><br />
           Reparación y Diseño de Moldes<br />
-          <a href="mailto:contacto@redimo.mx">contacto@redimo.mx</a> · <a href="tel:+52XXXXXXXXXX">+52 XXXXXXXXXX</a>
+          <a href="mailto:contacto@redimo.mx">j.ventas@redimo.mx</a> · <a href="tel:+52XXXXXXXXXX">+52 XXXXXXXXXX</a>
         </div>
       </address>
     </div>
@@ -251,10 +303,9 @@
   <footer class="footer">
     <div class="container footer__grid">
       <p>© <span id="year"></span> REDIMO. Todos los derechos reservados.</p>
-      <a href="#top" class="top">Volver arriba</a>
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>

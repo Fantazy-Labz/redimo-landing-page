@@ -5,16 +5,61 @@ document.getElementById("year").textContent = new Date().getFullYear();
 const burger = document.getElementById("burger");
 const mobileMenu = document.getElementById("mobileMenu");
 
+function openMenu() {
+  document.body.classList.add("body--lock");
+  burger.setAttribute("aria-expanded", "true");
+  mobileMenu.hidden = false;
+  // Forzar reflow para transición
+  // eslint-disable-next-line no-unused-expressions
+  mobileMenu.offsetHeight;
+  mobileMenu.classList.add("is-open");
+}
+
+function closeMenu() {
+  mobileMenu.classList.remove("is-open");
+  burger.setAttribute("aria-expanded", "false");
+  // Espera la transición antes de ocultar para accesibilidad
+  const onEnd = () => {
+    mobileMenu.hidden = true;
+    mobileMenu.removeEventListener("transitionend", onEnd);
+  };
+  mobileMenu.addEventListener("transitionend", onEnd);
+  document.body.classList.remove("body--lock");
+}
+
 burger?.addEventListener("click", () => {
   const expanded = burger.getAttribute("aria-expanded") === "true";
-  burger.setAttribute("aria-expanded", String(!expanded));
-  mobileMenu.hidden = expanded;
+  if (expanded) closeMenu(); else openMenu();
 });
+
+// Cerrar con ESC
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") {
+    closeMenu();
+    burger.focus();
+  }
+});
+
+// Cerrar al hacer clic fuera
+document.addEventListener("click", (e) => {
+  if (
+    burger.getAttribute("aria-expanded") === "true" &&
+    !mobileMenu.contains(e.target) &&
+    !burger.contains(e.target)
+  ) {
+    closeMenu();
+  }
+});
+
+// Cerrar al navegar (data-menu-close en enlaces)
+mobileMenu.querySelectorAll("[data-menu-close]").forEach((a) =>
+  a.addEventListener("click", () => closeMenu())
+);
 
 // WhatsApp dinámico
 const wa = document.getElementById("whatsappLink");
 wa.href = createWhatsAppURL({
-  phone: "+521XXXXXXXXXX", // <- pon tu número
+  phone: "+521XXXXXXXXXX", // <- tu número (MX con 52)
   text: "Hola, me interesa una cotización para reparación/diseño de moldes."
 });
 
@@ -24,11 +69,14 @@ form?.addEventListener("submit", (e) => {
   e.preventDefault();
   const data = Object.fromEntries(new FormData(form).entries());
   const errors = validate(data);
-  // Mostrar/ocultar errores
-  form.querySelectorAll(".error").forEach(el => (el.style.display = "none"));
+  // Reset errores
+  form.querySelectorAll(".error").forEach((el) => (el.style.display = "none"));
   if (errors.length) {
     errors.forEach(({ field, message }) => {
-      const small = form.querySelector(`[name="${field}"]`)?.closest(".field")?.querySelector(".error");
+      const small = form
+        .querySelector(`[name="${field}"]`)
+        ?.closest(".field")
+        ?.querySelector(".error");
       if (small) { small.textContent = message; small.style.display = "block"; }
     });
     return;
