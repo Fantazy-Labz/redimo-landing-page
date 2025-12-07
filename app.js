@@ -59,7 +59,7 @@ mobileMenu.querySelectorAll("[data-menu-close]").forEach((a) =>
 // WhatsApp dinámico
 const wa = document.getElementById("whatsappLink");
 wa.href = createWhatsAppURL({
-  phone: "+521XXXXXXXXXX", // <- tu número (MX con 52)
+  phone: "+528123506256", // <- tu número (MX con 52)
   text: "Hola, me interesa una cotización para reparación/diseño de moldes."
 });
 
